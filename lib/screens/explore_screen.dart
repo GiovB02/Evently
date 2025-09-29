@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myapp/screens/event_details_screen.dart';
 import '../data/events.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -16,31 +17,39 @@ class ExploreScreen extends StatelessWidget {
         return Card(
           margin: const EdgeInsets.all(8.0),
           clipBehavior: Clip.hardEdge,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                event.imageUrl,
-                height: 180,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) =>
-                    const Center(child: Icon(Icons.image_not_supported)),
-              ),
-              ListTile(
-                title: Text(event.title),
-                subtitle: Text('${df.format(event.date)} • ${event.location}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(event.description),
-              ),
-            ],
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventDetailsScreen(event: event),
+                ),
+              );
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(
+                  event.imageUrl,
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) =>
+                      const Center(child: Icon(Icons.image_not_supported)),
+                ),
+                ListTile(
+                  title: Text(event.title),
+                  subtitle: Text('${df.format(event.date)} • ${event.location}'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(event.description),
+                ),
+              ],
+            ),
           ),
         );
       },
     );
   }
 }
-
-

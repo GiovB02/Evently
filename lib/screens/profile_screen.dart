@@ -19,14 +19,14 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Lucía Mendoza',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 4),
-            const Text(
+            Text(
               'lucia@example.com',
-              style: TextStyle(color: Colors.white70),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
             ),
             const SizedBox(height: 16),
             FilledButton.icon(
